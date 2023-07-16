@@ -69,4 +69,13 @@ describe("Pagination", () => {
 
     expect(nextButton).toHaveClass("disabled");
   });
+
+  test("페이지네이션 숫자 클릭시 해당 숫자 페이지로 이동 할 수 있음", () => {
+    renderPageNumbers(2);
+    const pageNumbers = screen.getAllByTestId(PAGE_NUMBER_TEST_ID);
+
+    fireEvent.click(pageNumbers[2]);
+
+    expect(pageNumbers[2]).toHaveClass("active");
+  });
 });

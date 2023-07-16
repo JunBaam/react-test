@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./index.css";
 
 export default function App({
@@ -34,10 +34,15 @@ export default function App({
     }
   };
 
+  const onPageNumberClick = useCallback((page: number) => {
+    setCurrentPage(page);
+  }, []);
+
   const renderPageNumbers = pageNumbers.map((number) => {
     return (
       <li key={number}>
         <span
+          onClick={() => onPageNumberClick(number)}
           data-testid={pageNumberTestId}
           className={currentPage === number ? "active" : undefined}
         >
