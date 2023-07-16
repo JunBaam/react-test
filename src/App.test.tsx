@@ -27,6 +27,28 @@ const renderPageNumbers = (itemsPerPage?: number) => {
   };
 };
 
+function addTwoNumbers(a: number, b: number) {
+  return a + b;
+}
+
+describe("addTwoNumbers", () => {
+  test("1 and 2 make 3", () => {
+    // Arrange
+    // 테스트에 필요한 것들을 셋팅
+    const argA = 1;
+    const argB = 2;
+    const assert = 3;
+
+    // Act
+    //Arrange를 바탕으로 함수를 셋팅
+    const result = addTwoNumbers(argA, argB);
+
+    //Assert
+    //결과값이 내가 예상한 값이 맞는지 확인
+    expect(result).toBe(assert);
+  });
+});
+
 describe("Pagination", () => {
   test("Pagination 컴포넌트 렌더링", () => {
     const { prevButton, nextButton } = renderPageNumbers();
@@ -46,10 +68,11 @@ describe("Pagination", () => {
   });
 
   test("첫번째 페이지에서는 이전 페이지로 돌아갈 수 없음", () => {
+    // Arrange
     const { prevButton } = renderPageNumbers(1);
-
+    // Act
     fireEvent.click(prevButton);
-
+    //Assert
     expect(prevButton).toHaveClass("disabled");
   });
 
