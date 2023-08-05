@@ -11,7 +11,7 @@ const TextField: React.FC<{
     <>
       {label}
       <input
-        onChange={(e) => setValue({ ...value, [source]: e.target.value })}
+        onChange={(e) => setValue({ [source]: e.target.value })}
         value={value[source].toString()}
       />
     </>

@@ -11,7 +11,7 @@ const CheckboxField: React.FC<{
     <>
       {label}
       <input
-        onChange={(e) => setValue({ ...value, [source]: e.target.checked })}
+        onChange={(e) => setValue({ [source]: e.target.checked })}
         value={value[source].toString()}
         type={"checkbox"}
       />

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 import TextField from "../../components/textFeild";
 import Form from "../../components/form";
 import CheckboxField from "../../components/checkboxFeild";
@@ -21,13 +21,24 @@ export const InfoContext = createContext({
 });
 
 function FormResult() {
-  const [info, setInfo] = useState<Info>(defaultInfo);
+  // const [info, setInfo] = useState<Info>(defaultInfo);
+  const [info, setInfo] = useReducer((prevInfo: Info, partialInfo: any) => {
+    return {
+      ...prevInfo,
+      ...partialInfo,
+    };
+  }, defaultInfo);
 
   const onSubmit = () => {
     if (info.confirm) {
       alert(`name: ${info.name}`);
     }
   };
+
+  // const onChange = (value: Record<string, string | boolean>) => {
+  //   //key를 통해 이전값을 새로운값으로 덮어쓰기
+  //   setInfo((prev) => ({ ...prev, ...value }));
+  // };
 
   return (
     <InfoContext.Provider value={{ value: info, setValue: setInfo }}>
