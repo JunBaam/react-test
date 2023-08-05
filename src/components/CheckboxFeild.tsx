@@ -1,18 +1,18 @@
-import React from "react";
-import { Info } from "../results/FormResult";
+import React, { useContext } from "react";
+import { Info, InfoContext } from "../results/FormResult";
 
 const CheckboxField: React.FC<{
-  value: Info;
   source: keyof Info;
-  setValue: (info: Info) => void;
   label: string;
-}> = ({ label, source, value, setValue }) => {
+}> = ({ label, source }) => {
+  const { value, setValue } = useContext(InfoContext);
+
   return (
     <>
       {label}
       <input
-        onChange={(e) => setValue({ ...value, [source]: e.target.value })}
-        value={value.toString()}
+        onChange={(e) => setValue({ ...value, [source]: e.target.checked })}
+        value={value[source].toString()}
         type={"checkbox"}
       />
     </>
