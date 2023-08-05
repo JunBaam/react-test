@@ -1,4 +1,4 @@
-import Pagination from "./App";
+import Pagination from ".";
 import {
   fireEvent,
   getAllByTestId,
