@@ -1,8 +1,13 @@
 import React, { useContext } from "react";
 import { Info, InfoContext } from "../results/FormResult";
+// import {Object } from 'ts-toolbelt'
+
+type StringKeys = {
+  [K in keyof Info]: Info[K] extends string ? K : never;
+}[keyof Info];
 
 const TextField: React.FC<{
-  source: keyof Info;
+  source: StringKeys;
   label: string;
 }> = ({ label, source }) => {
   const { value, setValue } = useContext(InfoContext);
